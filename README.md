@@ -1,0 +1,1 @@
+This repository will contain my exercises on the anomaly detection module.
