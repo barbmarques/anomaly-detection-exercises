@@ -13,16 +13,16 @@ def wrangle_curr_logs(df):
     #rename columns to more descriptive names
     df = df.rename(columns = {'name': 'cohort', 'user_id':'user', 'program_id':'program'})
     
-    #drop unneccessary columns
-    df = df.drop(columns = ['deleted_at','updated_at','created_at','start_date','end_date','slack','cohort_id', 'id'])
+#     #drop unneccessary columns
+#     df = df.drop(columns = ['deleted_at','updated_at','created_at','start_date','end_date','slack','cohort_id', 'id'])
     
-    #replace program id with names
-    df = df.replace({'program': 1}, 'web_dev')
-    df = df.replace({'program': 2}, 'staff')
-    df = df.replace({'program': 3}, 'data_sci')
-    df = df.replace({'program': 4}, 'other')
+#     #replace program id with names
+#     df = df.replace({'program': 1}, 'web_dev')
+#     df = df.replace({'program': 2}, 'staff')
+#     df = df.replace({'program': 3}, 'data_sci')
+#     df = df.replace({'program': 4}, 'other')
     
-    # concat Date Time columns and drops original columns
+#     concat Date Time columns and drops original columns
     df["datetime"] = df["date"] + ' '+ df["time"] 
     df.drop(columns = ['date','time'], inplace = True)
     
@@ -37,6 +37,7 @@ def wrangle_curr_logs(df):
     df['month'] = df.index.month
     df['day'] = df.index.day
     df['hour'] = df.index.hour
- 
+    df['weekday'] = df.index.day_name()
+    
     return df
     
